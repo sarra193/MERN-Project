@@ -11,7 +11,7 @@ function Login() {
       const errors =useSelector(state=>state.userReducer.errors)
             const isAuth =useSelector(state=>state.userReducer.isAuth)
 
-      console.log(errors)
+      console.log(isAuth)
       const dispatch =useDispatch()
 
 

@@ -1,4 +1,4 @@
-import { CREATE_EVENTS, GET_ALL_EVENTS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_REGISTER, USER_REGISTER_FAIL, USER_REGISTER_SUCCESS } from "../constants/actionType"
+import { CREATE_EVENTS,UPDATE_EVENTS, GET_ALL_EVENTS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_REGISTER, USER_REGISTER_FAIL, USER_REGISTER_SUCCESS } from "../constants/actionType"
 import axios from 'axios';
 
 //high order function ,dispatch: to dispatch action of the back end success/fail/register 
@@ -30,11 +30,11 @@ export const userLogin = (userCred) => async (dispatch) => {
       dispatch({ type: USER_LOGIN })
       
       try {
-            const userLogin = await axios.post('/user/login', userCred);
-            console.log(userCred);
+            const userRes = await axios.post('/user/login', userCred);
+            console.log(userRes);
             //stocker token in local storage to verifier if the user is logged or not
-            localStorage.setItem('token', userLogin.data.token);
-            dispatch({ type: USER_LOGIN_SUCCESS, payload: userLogin.data.token });
+            localStorage.setItem("token", userRes.data.token);
+            dispatch({ type: USER_LOGIN_SUCCESS, payload: userRes.data });
 
 
       } catch (error) {
@@ -46,18 +46,16 @@ export const userLogin = (userCred) => async (dispatch) => {
 
 
 export const getProfile = () => async (dispatch) => {
+      const config = {
+                  headers: {
+                        Authorization: localStorage.getItem("token"),
+                  },
+            };
       dispatch({ type: GET_PROFILE })
       
-
-
       try {
-            const token = localStorage.getItem('token')
 
-            const config = {
-                  headers: {
-                        Authorization: token
-                  }
-            }
+      
             const userProfile = await axios.get('/user/profile', config)
       
             dispatch({ type: GET_PROFILE_SUCCESS, payload: userProfile.data })
@@ -90,6 +88,22 @@ export const getEvent = () => async (dispatch) => {
             
       } catch (error) {
             console.log(error.msg);
+            
+      }
+      
+};
+
+
+
+
+export const updateEvent = (id,updatedEvent) => async (dispatch) => {
+      
+      try {
+            const { data } = await axios.patch(`/events/${id}`,updatedEvent);
+            dispatch({ type: UPDATE_EVENTS, payload: data });
+            
+      } catch (error) {
+            console.log(error);
             
       }
       

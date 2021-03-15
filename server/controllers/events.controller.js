@@ -1,3 +1,4 @@
+const  mongoose  = require("mongoose");
 const Events = require("../models/Events");
 
 exports.getEvents = async(req, res) => {
@@ -29,3 +30,12 @@ exports.createEvents = async (req, res) => {
       }
 };
 
+exports.updateEvents = async(req, res) => {
+      
+      const {id: _id } = req.params
+      const event = req.body;
+      if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('no event with this id');
+
+      const updatedEvent = await Events.findByIdAndUpdate(_id, { ...event, _id }, { new: true });
+      res.json(updatedEvent);
+}

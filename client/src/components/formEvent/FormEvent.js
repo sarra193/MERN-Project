@@ -1,30 +1,44 @@
-import React, { useState } from 'react'
-import './NewEvent.css';
+import React, { useEffect, useState } from 'react'
+import './FormEvent.css';
 import FileBase from 'react-file-base64';
-import { useDispatch } from 'react-redux';
-import { createEvent } from '../../JS/action';
-function NewEvent() {
+import { useDispatch, useSelector } from 'react-redux';
+import { createEvent ,updateEvent} from '../../JS/action';
+import { Link, Redirect } from 'react-router-dom';
+function FormEvent({eventId,setEventId}) {
 
-      const [eventData, setEventData] = useState({
-            creator: '', title: '', description: '', tags: '', image: '', date: ''});
+      const [eventData, setEventData] = useState({creator: '', title: '', description: '', tags: '', image: '', date: ''});
       
+      const event = useSelector(state => eventId ? state.eventsReducer.find((evet) => evet._id === eventId) : null);
 
       const dispatch = useDispatch();
 
+      useEffect(() => {
+            
+            if(event) setEventData(event)
+      }, [event,eventId])
 
-
-      
       const handleSubmit = (e) => {
             e.preventDefault();
-            dispatch(createEvent(eventData));
+            if (eventId) {
+                  dispatch(updateEvent(eventId, eventData));
+                  
+            } else {
+            dispatch(createEvent(eventData)); 
+            }
+            clear();
+
       }
-      const clear=()=>{}
+      const clear = () => {
+            setEventId(null);
+            setEventData({creator: '', title: '', description: '', tags: '', image: '', date: ''})
+
+      }
 
       return (
             <div>
-                  <form onSubmit={handleSubmit}>
-  <h1>Creating an Event</h1>
-  <div class="question">
+                  <form onSubmit={handleSubmit }>
+            <h1>{eventId? 'Updating':'Creating'}  an Event</h1>
+            <div class="question">
                               <input type="text" required value={eventData.creator} onChange={e => setEventData({ ...eventData, creator: e.target.value })} /><label>Creator</label>
                         </div>
                         <div class="question">
@@ -46,12 +60,13 @@ function NewEvent() {
                                     multiple={false}
                                     onDone={({base64})=>setEventData({...eventData,image:base64})}/>
                         </div>
-  
-                        <button>Create</button>
-                         <button onClick={clear}>Clear</button>
+                        <button  > {eventId? 'Update' :'Create'}</button>
+                  
+                        
+                        <button onClick={clear}>Clear</button>
 </form>
             </div>
       )
 };
 
-export default NewEvent
+export default FormEvent

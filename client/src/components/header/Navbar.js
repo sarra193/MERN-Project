@@ -13,7 +13,7 @@ function Navbar() {
                                           <li className="nav-item"> <a className="nav-link active" aria-current="page">About us</a> </li>
                                           <li className="nav-item"> <a className="nav-link">Products</a> </li>
                                           <li className="nav-item"> <a className="nav-link">Services</a> </li>
-                                          <li className="nav-item"> <a className="nav-link">Events</a> </li>
+                                          <Link to='/events'><li className="nav-item"> <a className="nav-link">Events</a> </li></Link> 
                                           <Link to='/profile'><li className="nav-item"> <a className="nav-link">profile</a> </li></Link>
                                           <Link to='/login'><li className="nav-item"> <a className="nav-link">login</a> </li></Link>
                                           <li className="nav-item"> <a className="nav-link">

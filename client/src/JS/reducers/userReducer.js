@@ -21,7 +21,7 @@ const userReducer = (state =initialState, { type, payload })=> {
                   return {
                         ...state,
                         loading: false,
-                        user: payload
+                        user: payload,
                   };
             
             case USER_LOGIN_SUCCESS:
@@ -29,7 +29,7 @@ const userReducer = (state =initialState, { type, payload })=> {
                         ...state,
                         loading: false,
                         token: payload,
-                        isAuth:true
+                        isAuth:true,
                   };
             
             case GET_PROFILE_SUCCESS:
@@ -41,14 +41,22 @@ const userReducer = (state =initialState, { type, payload })=> {
                   };
             
             case USER_REGISTER_FAIL:
-            case USER_LOGIN_FAIL:
-            case GET_PROFILE_FAIL:
+            
+            
                   return {
                         ...state,
                         loading: false,
                         errors: payload
                   };
-            
+            case GET_PROFILE_FAIL:
+            case USER_LOGIN_FAIL:
+                  return {
+                        ...state,
+                        loading: false,
+                        errors: payload,
+                        isAuth:false
+                        
+                  }
             
             
             default:

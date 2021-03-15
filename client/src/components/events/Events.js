@@ -4,7 +4,7 @@ import { getEvent } from '../../JS/action';
 import Event from './event/Event';
 
 
-function Events() {
+function Events({setEventId,eventId}) {
 
       const events = useSelector(state => state.eventsReducer)
 
@@ -17,14 +17,20 @@ function Events() {
       dispatch(getEvent())
       
     }
- }, [dispatch]);
+ }, [eventId,dispatch]);
       console.log(events)
       
       return (
            !events.length ? <h1>no events</h1>:
-                  (<div>
+                  (<div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-evenly",
+                        flexWrap: "wrap",
+                        gap: '10px 20px'
+                  }}>
                         {events.map((event) => (
-                              <Event key={event._id} event={event}/>
+                              <Event key={event._id} event={event} setEventId={ setEventId}/>
                         ))}
                   
             </div>)  
