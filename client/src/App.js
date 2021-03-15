@@ -6,7 +6,7 @@ import Home from './components/home/Home';
 import Login from './components/login/Login';
 import { Switch, Route } from 'react-router-dom';
 import {  useEffect } from 'react';
-import { getEvent, getProfile } from './JS/action';
+import {  getEvent, getProfile } from './JS/action';
 import { useDispatch, useSelector } from 'react-redux';
 import PrivateRoute from './components/privateRoute/PrivateRoute';
 import Profile from './components/profile/Profile'
@@ -17,21 +17,16 @@ function App() {
   useEffect(() => {
     
     return () => {
-      dispatch(getProfile())
-      
-    }
-  }, [isAuth]);
+      dispatch(getProfile());
+      dispatch(getEvent());
 
- useEffect(() => {
-    
-    return () => {
-      dispatch(getEvent())
       
     }
-  }, []);
+  }, [isAuth,dispatch]);
+
 
   return (
-    <div style={{ backgroundImage: `url(${bg})`, backgroundRepeat: 'no-repeat ', backgroundSize: 'cover' }}>
+    <div>
       <Navbar />
       <Switch>
         <Route exact path='/' render={() => <Home />} />

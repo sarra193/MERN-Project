@@ -3,7 +3,7 @@ const Events = require("../models/Events");
 exports.getEvents = async(req, res) => {
       try {
             const events = await Events.find();
-            console.log(events);
+      
             res.status(200).json(events);
             
       } catch (error) {

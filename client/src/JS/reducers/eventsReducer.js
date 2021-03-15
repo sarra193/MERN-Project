@@ -10,6 +10,7 @@ const eventsReducer = (events=[],{type,payload}) => {
             case GET_ALL_EVENTS:
                   
                   return payload;
+            
             case CREATE_EVENTS:
                   
                   return [...events,payload];
