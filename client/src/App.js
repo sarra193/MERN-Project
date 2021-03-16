@@ -1,6 +1,5 @@
 import './App.css';
 import SignUp from './components/signup/SignUp';
-import bg from './assets/img/bg.jpg'
 import Navbar from './components/header/Navbar';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
@@ -16,14 +15,13 @@ function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.userReducer.isAuth);
   const [eventId, setEventId] = useState(null);
+  
   useEffect(() => {
-    
     
       dispatch(getProfile());
       dispatch(getEvent());
 
   }, [isAuth]);
-console.log(isAuth)
 
   return (
     <div>

@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
 
-body {
-      background-color: #eee
-}
 
 .navbar-nav>li>a {
       text-transform: uppercase;
@@ -119,7 +116,7 @@ body {
 }
 
 .credits__link {
-      color: #ff8b88;
+      color: black;
       text-decoration: none;
       transition: color 250ms ease-in;
 }

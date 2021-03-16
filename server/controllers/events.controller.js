@@ -39,3 +39,25 @@ exports.updateEvents = async(req, res) => {
       const updatedEvent = await Events.findByIdAndUpdate(_id, { ...event, _id }, { new: true });
       res.json(updatedEvent);
 }
+
+
+
+exports.deleteEvents = async (req, res) => {
+      
+      const { id } = req.params;
+      if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no event with this id');
+
+      await Events.findByIdAndRemove(id);
+      res.json({ msg: 'post deleted successfully' });
+      
+
+}
+
+
+exports.likeEvent = async (req, res) => {
+      const { id } = req.params;
+      if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no event with this id');
+      const event = await Events.findById(id);
+      const updatedEvents = await Events.findByIdAndUpdate(id, { likeCount: event.likeCount + 1 }, { new: true });
+      res.json(updatedEvents);
+}

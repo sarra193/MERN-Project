@@ -1,4 +1,7 @@
-import { CREATE_EVENTS,UPDATE_EVENTS, GET_ALL_EVENTS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_REGISTER, USER_REGISTER_FAIL, USER_REGISTER_SUCCESS } from "../constants/actionType"
+import {
+      CREATE_EVENTS, UPDATE_EVENTS, DELETE_EVENTS, GET_ALL_EVENTS, GET_PROFILE, GET_PROFILE_FAIL,
+      GET_PROFILE_SUCCESS, USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_REGISTER, USER_REGISTER_FAIL, USER_REGISTER_SUCCESS, LIKE_EVENTS
+} from "../constants/actionType"
 import axios from 'axios';
 
 //high order function ,dispatch: to dispatch action of the back end success/fail/register 
@@ -101,6 +104,40 @@ export const updateEvent = (id,updatedEvent) => async (dispatch) => {
       try {
             const { data } = await axios.patch(`/events/${id}`,updatedEvent);
             dispatch({ type: UPDATE_EVENTS, payload: data });
+            
+      } catch (error) {
+            console.log(error);
+            
+      }
+      
+};
+
+
+
+
+
+
+
+export const deleteEvent = (id) => async (dispatch) => {
+      
+      try {
+            await axios.delete(`/events/${id}`);
+            dispatch({ type: DELETE_EVENTS, payload: id });
+            
+      } catch (error) {
+            console.log(error);
+            
+      }
+      
+};
+
+
+
+export const likeEvent = (id) => async (dispatch) => {
+      
+      try {
+            const { data } = await axios.patch(`/events/${id}/likeEvent`);
+            dispatch({ type: LIKE_EVENTS, payload: data });
             
       } catch (error) {
             console.log(error);

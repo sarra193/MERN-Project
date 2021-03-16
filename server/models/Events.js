@@ -6,7 +6,8 @@ const eventsSchema = mongoose.Schema({
       creator: String,
       tags: [String],
       image: String,
-      date: String,
+      date: Date,
+      numOfParticip:Number,
       likeCount: {
             type: Number,
             default: 0
@@ -14,7 +15,8 @@ const eventsSchema = mongoose.Schema({
       createdAt: {
             type: Date,
             default: new Date()
-      }
+      },
+      user:[{ type : mongoose.Schema.Types.ObjectId,ref:'user'}]
 });
 
 const Events = mongoose.model('Event', eventsSchema);

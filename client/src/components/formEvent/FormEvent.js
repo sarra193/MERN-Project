@@ -3,10 +3,9 @@ import './FormEvent.css';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { createEvent ,updateEvent} from '../../JS/action';
-import { Link, Redirect } from 'react-router-dom';
 function FormEvent({eventId,setEventId}) {
 
-      const [eventData, setEventData] = useState({creator: '', title: '', description: '', tags: '', image: '', date: ''});
+      const [eventData, setEventData] = useState({creator: '', title: '', description: '', tags: '', image: '', date: '',numOfParticip:''});
       
       const event = useSelector(state => eventId ? state.eventsReducer.find((evet) => evet._id === eventId) : null);
 
@@ -30,7 +29,7 @@ function FormEvent({eventId,setEventId}) {
       }
       const clear = () => {
             setEventId(null);
-            setEventData({creator: '', title: '', description: '', tags: '', image: '', date: ''})
+            setEventData({creator: '', title: '', description: '', tags: '', image: '', date: '',numOfParticip:''})
 
       }
 
@@ -51,10 +50,13 @@ function FormEvent({eventId,setEventId}) {
                               <input type="text" required value={eventData.tags} onChange={e => setEventData({ ...eventData, tags: e.target.value })} /><label>tags</label>
                         </div>
                         <div class="question">
-                              <input type="text" required value={eventData.date} onChange={e => setEventData({ ...eventData, date: e.target.value })} /><label>date</label>
+                              <input type="date" required value={eventData.date} onChange={e => setEventData({ ...eventData, date: e.target.value })} /><label>date</label>
+                        </div>
+                         <div class="question">
+                              <input type="text" required value={eventData.numOfParticip} onChange={e => setEventData({ ...eventData, numOfParticip: e.target.value })} /><label>Number Of Participant</label>
                         </div>
                         <div class="question">
-                              <input type="text"/><label>image</label>
+                        
                               <FileBase
                                     type="file"
                                     multiple={false}
