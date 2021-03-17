@@ -1,6 +1,6 @@
 import {
       CREATE_EVENTS, UPDATE_EVENTS, DELETE_EVENTS, GET_ALL_EVENTS, GET_PROFILE, GET_PROFILE_FAIL,
-      GET_PROFILE_SUCCESS, USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_REGISTER, USER_REGISTER_FAIL, USER_REGISTER_SUCCESS, LIKE_EVENTS
+      GET_PROFILE_SUCCESS, USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_REGISTER, USER_REGISTER_FAIL, USER_REGISTER_SUCCESS, LIKE_EVENTS, PARTICIPANT_EVENTS
 } from "../constants/actionType"
 import axios from 'axios';
 
@@ -138,6 +138,19 @@ export const likeEvent = (id) => async (dispatch) => {
       try {
             const { data } = await axios.patch(`/events/${id}/likeEvent`);
             dispatch({ type: LIKE_EVENTS, payload: data });
+            
+      } catch (error) {
+            console.log(error);
+            
+      }
+      
+};
+
+export const NumParEvent = (id) => async (dispatch) => {
+      
+      try {
+            const { data } = await axios.patch(`/events/${id}/numParticEvent`);
+            dispatch({ type: PARTICIPANT_EVENTS, payload: data });
             
       } catch (error) {
             console.log(error);

@@ -12,11 +12,9 @@ function Events({setEventId,eventId}) {
 
       
  useEffect(() => {
-    
-    return () => {
       dispatch(getEvent())
       
-    }
+    
  }, [eventId,dispatch]);
       console.log(events)
       

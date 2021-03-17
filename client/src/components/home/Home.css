@@ -1,98 +1,259 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+@import "base/base";
+@import "base/typography";
+@import "base/helpers";
+@import "components/forms";
+@import "components/buttons";
+@import "layout/header";
+@import "layout/hero";
+@import "layout/features";
+@import "layout/testimonials";
+@import "layout/newsletter";
+@import "layout/main";
+@import "layout/footer";
+/*-------------------------------------------------------------- # Variables, functions and mixins --------------------------------------------------------------*/
+/*-------------------------------------------------------------- 1.0 Normalize * normalize.css v7.0.0 | MIT License * github.com/necolas/normalize.css --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Base --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Typography --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Helpers --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Forms --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Buttons --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Header --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Hero --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Features --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Testimonials --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Newsletter --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Site content --------------------------------------------------------------*/
+/*-------------------------------------------------------------- # Footer --------------------------------------------------------------*/
 
-* {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      text-decoration: none;
-      box-sizing: border-box
+
+html {
+      line-height: 1.15;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
 }
 
 body {
-      font-family: 'Montserrat', sans-serif;
-      background: url(https://i.imgur.com/3Ad4Atf.jpg);
-      background-position: center;
-      background-size: cover;
-      height: 100vh
+      margin: 0;
 }
 
-nav {
-      position: fixed;
-      width: 60px;
-      margin-top: 150px;
-      transition: all 0.3s linear;
-      box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, .4)
-}
-
-nav ul {
-      margin-top: 0;
-      margin-bottom: 0rem
-}
-
-nav li {
-      height: 45px;
-      position: relative
-}
-
-nav li a {
-      color: #fff !important;
+article,
+aside,
+footer,
+header,
+nav,
+section {
       display: block;
-      height: 100%;
-      width: 100%;
-      line-height: 45px;
-      padding-left: 25%;
-      border-bottom: 1px solid rgba(0, 0, 0, .4);
-      transition: all .3s linear;
-      text-decoration: none !important
 }
 
-nav li:nth-child(1) a {
-      background: #4267B2
+h1 {
+      font-size: 2em;
+      margin: 0.67em 0;
 }
 
-nav li:nth-child(2) a {
-      background: #1DA1F2
+figcaption,
+figure,
+main {
+      display: block;
 }
 
-nav li:nth-child(3) a {
-      background: #E1306C
+figure {
+      margin: 1em 40px;
 }
 
-nav li:nth-child(4) a {
-      background: #2867B2
+hr {
+      box-sizing: content-box;
+      height: 0;
+      overflow: visible;
 }
 
-nav li:nth-child(5) a {
-      background: #333
+pre {
+      font-family: monospace, monospace;
+      font-size: 1em;
 }
 
-nav li:nth-child(6) a {
-      background: #ff0000
+a {
+      background-color: transparent;
+      -webkit-text-decoration-skip: objects;
 }
 
-nav li a i {
-      position: absolute;
-      top: 14px;
-      left: 24px;
-      font-size: 15px
+abbr[title] {
+      border-bottom: none;
+      text-decoration: underline;
+      text-decoration: underline dotted;
 }
 
-ul li a span {
+b,
+strong {
+      font-weight: inherit;
+}
+
+b,
+strong {
+      font-weight: bolder;
+}
+
+code,
+kbd,
+samp {
+      font-family: monospace, monospace;
+      font-size: 1em;
+}
+
+dfn {
+      font-style: italic;
+}
+
+mark {
+      background-color: #ff0;
+      color: #000;
+}
+
+small {
+      font-size: 80%;
+}
+
+sub,
+sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+}
+
+sub {
+      bottom: -0.25em;
+}
+
+sup {
+      top: -0.5em;
+}
+
+audio,
+video {
+      display: inline-block;
+}
+
+audio:not([controls]) {
       display: none;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-transform: uppercase
+      height: 0;
 }
 
-a:hover {
-      z-index: 1;
-      width: 200px;
-      border-bottom: 1px solid rgba(0, 0, 0, .5);
-      box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3)
+img {
+      border-style: none;
 }
 
-ul li:hover a span {
-      padding-left: 30%;
+svg:not(:root) {
+      overflow: hidden;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+      font-family: sans-serif;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0;
+}
+
+button,
+input {
+      overflow: visible;
+}
+
+button,
+select {
+      text-transform: none;
+}
+
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+      -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+      border-style: none;
+      padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+      outline: 1px dotted ButtonText;
+}
+
+fieldset {
+      padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+      box-sizing: border-box;
+      color: inherit;
+      display: table;
+      max-width: 100%;
+      padding: 0;
+      white-space: normal;
+}
+
+progress {
+      display: inline-block;
+      vertical-align: baseline;
+}
+
+textarea {
+      overflow: auto;
+}
+
+[type="checkbox"],
+[type="radio"] {
+      box-sizing: border-box;
+      padding: 0;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+      height: auto;
+}
+
+[type="search"] {
+      -webkit-appearance: textfield;
+      outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+      -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+      -webkit-appearance: button;
+      font: inherit;
+}
+
+details,
+menu {
       display: block;
-      font-size: 15px
+}
+
+summary {
+      display: list-item;
+}
+
+canvas {
+      display: inline-block;
+}
+
+template {
+      display: none;
+}
+
+[hidden] {
+      display: none;
 }

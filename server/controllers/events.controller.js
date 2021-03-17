@@ -3,7 +3,7 @@ const Events = require("../models/Events");
 
 exports.getEvents = async(req, res) => {
       try {
-            const events = await Events.find();
+            const events = await Events.find().populate('user');
       
             res.status(200).json(events);
             
@@ -19,7 +19,7 @@ exports.getEvents = async(req, res) => {
 exports.createEvents = async (req, res) => {
       const event = req.body;
 
-      const newEvent = new Events(event);
+      const newEvent = new Events({event});
       try {
             
             await newEvent.save();
@@ -60,4 +60,14 @@ exports.likeEvent = async (req, res) => {
       const event = await Events.findById(id);
       const updatedEvents = await Events.findByIdAndUpdate(id, { likeCount: event.likeCount + 1 }, { new: true });
       res.json(updatedEvents);
-}
+};
+
+
+
+exports.numParticEvent = async (req, res) => {
+      const { id } = req.params;
+      if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no event with this id');
+      const event = await Events.findById(id);
+      const updatedEvents = await Events.findByIdAndUpdate(id, { numOfParticip: event.numOfParticip - 1 }, { new: true });
+      res.json(updatedEvents);
+};

@@ -3,7 +3,7 @@ import './Event.css';
 import moment from 'moment'
 import { Link } from 'react-router-dom';
 import {useDispatch} from 'react-redux'
-import { deleteEvent,likeEvent } from '../../../JS/action';
+import { deleteEvent,likeEvent, NumParEvent } from '../../../JS/action';
 
 function Event({ event, setEventId }) {
     const dispatch = useDispatch();
@@ -14,7 +14,8 @@ function Event({ event, setEventId }) {
             <div className="container">
                 <div className="cardcontainer">
                     <div className="photo"> <img src={event.image} alt="..." />
-                        <div className="photos">{event.tags.map(tag => `#${tag} `)}</div>
+                        {/*  <div className="photos">{event.tags.map(tag => `#${tag} `)}</div> */}
+                        <div className="photos" onClick={(()=>dispatch(NumParEvent(event._id)))}>{event.numOfParticip}</div>
                     </div>
                     <div className="content">
                         <p className="txt4">{event.creator}</p>

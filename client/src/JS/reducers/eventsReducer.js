@@ -1,5 +1,5 @@
 
-const { CREATE_EVENTS, GET_ALL_EVENTS, UPDATE_EVENTS, DELETE_EVENTS, LIKE_EVENTS } = require("../constants/actionType");
+const { CREATE_EVENTS, GET_ALL_EVENTS, UPDATE_EVENTS, DELETE_EVENTS, LIKE_EVENTS, PARTICIPANT_EVENTS } = require("../constants/actionType");
 
 
 
@@ -14,6 +14,7 @@ const eventsReducer = (events=[],{type,payload}) => {
             
             case UPDATE_EVENTS:
             case LIKE_EVENTS:
+            case PARTICIPANT_EVENTS:
                   
                   return events.map((event)=> event._id===payload._id?payload:event);
             

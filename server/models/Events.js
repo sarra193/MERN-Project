@@ -16,7 +16,7 @@ const eventsSchema = mongoose.Schema({
             type: Date,
             default: new Date()
       },
-      user:[{ type : mongoose.Schema.Types.ObjectId,ref:'user'}]
+      user:[{ type : mongoose.Schema.Types.ObjectId,ref:'User'}]
 });
 
 const Events = mongoose.model('Event', eventsSchema);
