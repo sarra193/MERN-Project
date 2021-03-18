@@ -1,0 +1,128 @@
+ @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
+
+.navbar-nav>li>a {
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-right: 20px;
+      color: #fff
+}
+
+.navbar-toggler {
+      padding: .20rem .50rem;
+      font-size: 1.25rem;
+      line-height: 1;
+      background-color: transparent;
+      border: 1px solid white
+}
+
+.nav-link {
+      color: #fff !important
+}
+
+.wrapper {
+      width: 100%;
+      position: absolute;
+      height: 100%;
+      background-color: #000;
+      clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 71% 100%);
+      transition: 1s all
+}
+
+.navbar-brand {
+      color: #fff;
+      font-family: 'Allerta Stencil', sans-serif;
+      margin-bottom: 4px;
+      font-size: 27px
+}
+
+.navbar-red:hover .wrapper {
+      clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 65% 100%)
+}
+
+.navbar-brand:hover {
+      color: #fff
+}
+
+.navbar-red {
+      background-color: #00bcd4;
+      color: #fff
+}
+
+.all-show {
+      z-index: 10
+}
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
+ */
+/* Base styling */
+ 
+
+
+.search__container {
+      padding-left: 84px;
+}
+
+
+.search__input {
+      padding: 12px 24px;
+
+      background-color: transparent;
+      transition: transform 250ms ease-in-out;
+      font-size: 14px;
+      line-height: 18px;
+
+      color: #575756;
+      background-color: transparent;
+                background-image: url(http://mihaeltomic.com/codepen/input-search/ic_search_black_24px.svg); 
+
+      background-repeat: no-repeat;
+      background-size: 18px 18px;
+      background-position: 95% center;
+      border-radius: 50px;
+      border: 1px solid #575756;
+      transition: all 250ms ease-in-out;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+}
+
+.search__input::placeholder {
+      color: rgba(87, 87, 86, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+}
+
+.search__input:hover,
+.search__input:focus {
+      padding: 12px 0;
+      outline: 0;
+      border: 1px solid transparent;
+      border-bottom: 1px solid #575756;
+      border-radius: 0;
+      background-position: 100% center;
+}
+
+.credits__container {
+      margin-top: 24px;
+}
+
+.credits__text {
+      text-align: center;
+      font-size: 13px;
+      line-height: 18px;
+}
+
+.credits__link {
+      color: black;
+      text-decoration: none;
+      transition: color 250ms ease-in;
+}
+
+.credits__link:hover,
+.credits__link:focus {
+      color: rgb(191, 137, 135);
+} 
+
+
