@@ -8,7 +8,7 @@ const eventsSchema = mongoose.Schema({
       image: String,
       date: Date,
       numOfParticip:Number,
-      likeCount: {
+      likes: {
             type: Number,
             default: 0
       },
@@ -16,7 +16,7 @@ const eventsSchema = mongoose.Schema({
             type: Date,
             default: new Date()
       },
-      user:[{ type : mongoose.Schema.Types.ObjectId,ref:'User'}]
+   /*    user:[{ type : mongoose.Schema.Types.ObjectId,ref:'User'}] */
 });
 
 const Events = mongoose.model('Event', eventsSchema);

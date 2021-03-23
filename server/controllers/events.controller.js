@@ -3,7 +3,7 @@ const Events = require("../models/Events");
 
 exports.getEvents = async(req, res) => {
       try {
-            const events = await Events.find().populate('user');
+            const events = await Events.find();
       
             res.status(200).json(events);
             
@@ -14,6 +14,20 @@ exports.getEvents = async(req, res) => {
       }
 }
 
+exports.getEventsById = async(req, res) => {
+      try {
+            let { _id } = req.params;
+  //   let id = req.params._id;
+            const eventsById = await User.find({ _id });
+      
+            res.status(200).json(eventsById);
+            
+      } catch (error) {
+            res.status(404).json({msg:error.msg});
+
+            
+      }
+}
 
 
 exports.createEvents = async (req, res) => {
@@ -56,9 +70,17 @@ exports.deleteEvents = async (req, res) => {
 
 exports.likeEvent = async (req, res) => {
       const { id } = req.params;
+     // if (!req.authUser.id) return res.json({ msg: 'unauthenticated' });
       if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('no event with this id');
       const event = await Events.findById(id);
-      const updatedEvents = await Events.findByIdAndUpdate(id, { likeCount: event.likeCount + 1 }, { new: true });
+   /*    const index = event.likes.findIndex((id)=>id===String(req.authUser.id))
+      if (index === -1) {
+                        event.likes.push(req.authUser.id);
+
+      } else {
+            event.likes=event.likes.filter((id)=> id !==String(req.authUser.id))
+      } */
+      const updatedEvents = await Events.findByIdAndUpdate(id, { likes: event.likes + 1 } , { new: true });
       res.json(updatedEvents);
 };
 

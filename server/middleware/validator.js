@@ -8,6 +8,12 @@ exports.registerRules = () => [
       check('passWord', 'password required').notEmpty()
 ];
 
+exports.loginRules = () => [
+      check('email', 'email is required').notEmpty(),
+      check('email', 'this email is not valid').isEmail(),
+      check('passWord', 'password required').notEmpty()
+];
+
 exports.validator = (req, res, next) => {
 
       const errors = validationResult(req);
