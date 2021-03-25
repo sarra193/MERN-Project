@@ -1,11 +1,11 @@
-import { GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_REGISTER, USER_REGISTER_FAIL, USER_REGISTER_SUCCESS } from "../constants/actionType";
+import { GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USER_BY_ID, UPDATE_PROFILE, USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_REGISTER, USER_REGISTER_FAIL, USER_REGISTER_SUCCESS } from "../constants/actionType";
 
 
 const initialState = {
       loading: false,
-      user: null,
       isAuth: false,
-      errors:{}
+      errors:{},
+      userById:{}
 };
 
 const userReducer = (state =initialState, { type, payload })=> {
@@ -58,6 +58,12 @@ const userReducer = (state =initialState, { type, payload })=> {
                         isAuth:false
                         
                   }
+      
+            
+            case UPDATE_PROFILE:
+      
+                  
+                  return {...state,user:payload};
             
             
             default:

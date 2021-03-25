@@ -10,6 +10,10 @@ export const GET_PROFILE = "GET_PROFILE";
 export const GET_PROFILE_SUCCESS = "GET_PROFILE_SUCCESS";
 export const GET_PROFILE_FAIL = "GET_PROFILE_FAIL";
 
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
+export const GET_USER_BY_ID = "GET_USER_BY_ID";
+
+
 export const GET_ALL_EVENTS = "GET_ALL_EVENTS";
 export const CREATE_EVENTS = "CREATE_EVENTS";
 

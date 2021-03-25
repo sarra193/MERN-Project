@@ -1,23 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Route } from 'react-router-dom';
+import { getProfile } from '../../JS/action';
+import UpdateProfile from '../updateProfile/UpdateProfile';
 import './Profile.css'
 
 function Profile() {
-      return (
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(getProfile())
+   
+  }, [])
+
+  const user = useSelector(state => state.userReducer.user);
+  console.log(user)
+  return (
             <div >
-                 <div className="containerProfile">
+                <div className="containerProfile">
         <header>
-          <i className="fa fa-bars" aria-hidden="true" />
-        </header>
+
+      </header>
         <main>
           <div className="row">
             <div className="leftleft col-lg-4">
               <div className="photo-left">
-                <img className="photo" src="https://images.pexels.com/photos/1804796/pexels-photo-1804796.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt=""/>
-                <div className="active" />
-              </div>
-              <h4 className="name">Jane Doe</h4>
-              <p className="info">UI/UX Designer</p>
-              <p className="info">jane.doe@gmail.com</p>
+                <img className="photo" src={user.image} alt=""/>
+{/*                 <div className="active" />
+ */}              </div>
+                <div class="btn-group open">
+                <Link class="btn btn-primary" to='/profile'><i class="fa fa-user fa-fw"></i> {user.name}</Link>
+                  <Link class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ></Link>
+                  <ul class="dropdown-menu">
+                    <li  data-toggle="modal" data-target="#exampleModal"><Link ><i class="fa fa-pencil-square-o" aria-hidden="true" ></i> Edit</Link></li>
+                    <li><Link><i class="fa fa-trash" aria-hidden="true"></i> Delete</Link></li>
+                    
+                  </ul>
+                  </div>
+              <p className="info">{user.email}</p>
+              <p className="info">{ user.phoneNumber}</p>
               <div className="stats row">
                 <div className="stat col-xs-4" style={{paddingRight: '50px'}}>
                   <p className="number-stat">3,619</p>
@@ -32,7 +53,7 @@ function Profile() {
                   <p className="desc-stat">Uploads</p>
                 </div>
               </div>
-              <p className="desc">Hi ! My name is Jane Doe. I'm a UI/UX Designer from Paris, in France. I really enjoy photography and mountains.</p>
+              <p className="desc">{user.job}</p>
               <div className="social">
                 <i className="fa fa-facebook-square" aria-hidden="true" />
                 <i className="fa fa-twitter-square" aria-hidden="true" />
@@ -69,8 +90,10 @@ function Profile() {
                 </div>
               </div>
             </div>
-          </div></main>
-      </div>
+              </div>
+          </main>
+          </div>
+          <UpdateProfile/>
             </div>
       );
 }

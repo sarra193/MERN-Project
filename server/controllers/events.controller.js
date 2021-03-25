@@ -31,9 +31,8 @@ exports.getEventsById = async(req, res) => {
 
 
 exports.createEvents = async (req, res) => {
-      const event = req.body;
 
-      const newEvent = new Events({event});
+      const newEvent = new Events({...req.body});
       try {
             
             await newEvent.save();

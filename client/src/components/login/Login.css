@@ -62,6 +62,7 @@
       outline: 0;
       transition: 0.2s;
       margin-top: 20px;
+      width: 285px;
 }
 
 .form-field:focus {
@@ -134,5 +135,22 @@
             opacity: 1;
             padding: 20px 40px;
             width: 440px;
+            height: 500px;
       }
+}
+
+.pass-wrapper {
+      position: relative;
+      display: flex;
+}
+
+i {
+      position: absolute;
+      top: 44%;
+      right: 6%;
+}
+
+i:hover {
+      color: #00fcb6;
+      cursor: pointer;
 }

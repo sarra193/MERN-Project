@@ -1,6 +1,6 @@
 import {
       CREATE_EVENTS, UPDATE_EVENTS, DELETE_EVENTS, GET_ALL_EVENTS, GET_PROFILE, GET_PROFILE_FAIL,
-      GET_PROFILE_SUCCESS, USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_REGISTER, USER_REGISTER_FAIL, USER_REGISTER_SUCCESS, LIKE_EVENTS, PARTICIPANT_EVENTS
+      GET_PROFILE_SUCCESS, USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_REGISTER, USER_REGISTER_FAIL, USER_REGISTER_SUCCESS, LIKE_EVENTS, PARTICIPANT_EVENTS, UPDATE_PROFILE, GET_USER_BY_ID
 } from "../constants/actionType"
 import axios from 'axios';
 
@@ -53,7 +53,8 @@ export const getProfile = () => async (dispatch) => {
                   headers: {
                         Authorization: localStorage.getItem("token"),
                   },
-            };
+      };
+      
       dispatch({ type: GET_PROFILE })
       
       try {
@@ -66,6 +67,32 @@ export const getProfile = () => async (dispatch) => {
             dispatch({ type: GET_PROFILE_FAIL, payload: error.response.data })
             
       }
+};
+
+
+
+//Update Profile
+
+
+
+export const editProfile = (id, updatedProfile) => async (dispatch) => {
+      
+        const config = {
+                  headers: {
+                        Authorization: localStorage.getItem("token"),
+                  },
+      };
+      
+      try {
+            const { data } = await axios.put(`/user/profile/${id}`,updatedProfile,config);
+            dispatch({ type: UPDATE_PROFILE, payload: updatedProfile });
+            /*     .then(() => dispatch(getUsers())) */
+            
+      } catch (error) {
+            console.log(error);
+            
+      }
+      
 };
 
 

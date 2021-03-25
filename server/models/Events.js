@@ -3,20 +3,15 @@ const mongoose = require('mongoose');
 const eventsSchema = mongoose.Schema({
       title: String,
       description: String,
-      creator: String,
-      tags: [String],
       image: String,
       date: Date,
       numOfParticip:Number,
-      likes: {
-            type: Number,
-            default: 0
-      },
+      likes: [String],
       createdAt: {
             type: Date,
             default: new Date()
       },
-   /*    user:[{ type : mongoose.Schema.Types.ObjectId,ref:'User'}] */
+      user:[{ type : mongoose.Schema.Types.ObjectId,ref:'User'}] 
 });
 
 const Events = mongoose.model('Event', eventsSchema);

@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
-import { userLogin } from '../../JS/action';
+import { getProfile, userLogin } from '../../JS/action';
 import ErrorModal from '../errorModal/ErrorModal';
 import './Login.css'
 function Login() {
       const [email, setEmail] = useState();
       const [passWord, setPassWord] = useState();
+      const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
 
       //get errors with useSelector
       const errors =useSelector(state=>state.userReducer.errors.errors)
@@ -16,6 +20,11 @@ function Login() {
       console.log(isAuth)
       const dispatch =useDispatch()
 
+  
+  useEffect(() => {
+    dispatch(getProfile())
+   
+  }, [])
 
       const login = () => {
             dispatch(userLogin({
@@ -27,7 +36,7 @@ function Login() {
             setPassWord('');
       }
 
-      if(isAuth) return <Redirect to='/profile'/>
+      if(isAuth) return <Redirect exact to="/profile"/>
 
       return (
             <div>
@@ -43,7 +52,10 @@ function Login() {
                               </div>
                               <div className="form">
                                     <input type="email" className="form-field animation a3" placeholder="Email Address" onChange={(e) => setEmail(e.target.value)} />
-                                    <input type="password" className="form-field animation a4" placeholder="Password" onChange={(e) => setPassWord(e.target.value)} />
+                                   <div className="pass-wrapper">
+                                    <input type={passwordShown ? "text" : "password"} className="form-field animation a3" placeholder="Password" onChange={(e) => setPassWord(e.target.value)} />
+                                    <i onClick={togglePasswordVisiblity}>{passwordShown ? "hide" : "show"}</i>{" "}
+                                    </div>
                                     <p className="animation a5"><Link >Forgot Password</Link></p>
                                     <button className="animation a6" data-toggle="modal" data-target="#exampleModal" onClick={login} >LOGIN</button>
                                     <p className="animation a6"><Link >Sign Up</Link></p>

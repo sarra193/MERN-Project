@@ -39,8 +39,8 @@ header.masthead .masthead-heading {
 
 @media (min-width: 768px) {
       header.masthead {
-            padding-top: 17rem;
-            padding-bottom: 12.5rem;
+            padding-top: 20rem;
+            padding-bottom: 20.5rem;
       }
 
       header.masthead .masthead-subheading {

@@ -2,6 +2,8 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
 require("dotenv").config({ path: './config/.env' });
+const cloudinary = require("../utils/cloudinary");
+
 const secretOrKey = process.env.secretOrKey;
 
 exports.register = async (req, res) => {
@@ -68,3 +70,36 @@ exports.login = async (req,res) => {
       }
       
 }
+
+
+
+
+exports.updateProfile = async (req, res) => {
+      /*  let { _id } = req.params;
+       User.findByIdAndUpdate({ _id }, { $set: { ...req.body } })
+             .then((user) => res.send(user))
+             .catch((err) => res.send(err));
+  */
+
+      try {
+            let { _id } = req.params;
+            let user = await User.findById({_id});
+            // Upload image to cloudinary
+            const result = await cloudinary.uploader.upload(req.file.path);
+            const data = {
+                  name: req.body.name ||user.name,
+                  image: result.secure_url || user.image,
+                  email: req.body.email || user.email,
+                  phoneNumber: req.body.phoneNumber || user.phoneNumber,
+                  job: req.body.job || user.job,
+
+
+                  
+            };
+            user = await User.findByIdAndUpdate({ _id }, { $set: {...data} } , {new: true});
+            res.json(user);
+      } catch (err) {
+            console.log(err);
+      }
+};
+
